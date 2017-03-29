@@ -1,0 +1,16 @@
+/var/log/nginx/*.log {
+    daily
+    rotate 7
+    delaycompress
+    compress
+    compresscmd /bin/bzip2
+    compressext .bz2
+    missingok
+    dateext
+    dateformat -%Y-%m-%d
+    create 640 nginx adm
+    sharedscripts
+    postrotate
+            [ -f /var/run/nginx.pid ] && kill -HUP $(cat /var/run/nginx.pid)
+    endscript
+}
