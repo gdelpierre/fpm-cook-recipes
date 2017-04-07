@@ -29,7 +29,7 @@ endif
 ifdef DOCKER_OPTIONS
 	$(info - DOCKER_OPTIONS => $(DOCKER_OPTIONS))
 endif
-ifdef PACKAGE
+ifdef PKG
 	$(info - PACKAGE => $(PKG))
 endif
 	$(info ---)
