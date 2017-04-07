@@ -11,7 +11,7 @@ class Nginx < FPM::Cookery::Recipe
 
   name          'nginx-custom'
   version       '1.11.10'
-  revision      "1"
+  revision      '1'
   maintainer    'gde <gde@llew.me>'
   arch          'amd64'
   homepage      'http://nginx.net'
@@ -19,14 +19,16 @@ class Nginx < FPM::Cookery::Recipe
   source        "http://nginx.org/download/nginx-#{version}.tar.gz"
 
   build_depends 'libc6 (>= 2.14)', 'libexpat1 (>= 2.0.1)', 'libgd3 (>= 2.1.0~alpha~)',
-                'libgeoip-dev', 'libluajit-5.1-2', 'libpam0g (>= 0.99.7.1)', 'libpcre3-dev',
-                'libssl-dev', 'libxml2 (>= 2.7.4)',
+                'libluajit-5.1-2', 'libpam0g (>= 0.99.7.1)', 'libpcre3-dev',
+                'libssl-dev', 'libxml2 (>= 2.7.4)', 'libmaxminddb-dev',
                 'libxslt1.1 (>= 1.1.25)', 'zlib1g (>= 1:1.1.4)'
 
-  depends       'libpcre3', 'libssl1.0.0 (>= 1.0.2~beta3)', 'libgeoip1', 'libluajit-5.1-2'
+  depends       'libpcre3', 'libssl1.0.0 (>= 1.0.2~beta3)', 'libluajit-5.1-2',
+                'libmaxminddb0'
 
   conflicts     'nginx-core', 'nginx-full', 'nginx-light', 'nginx-common', 'nginx'
   replaces      'nginx-core', 'nginx-full', 'nginx-common', 'nginx-light', 'nginx'
+
 
   pre_install    'preinst'
   post_install   'postinst'
@@ -154,7 +156,8 @@ class Nginx < FPM::Cookery::Recipe
     lib('nginx/modules').install Dir['objs/*.so']
 
     # modules file
-    @@additionnals_modules.push('ndk_http_module.so').map do |mod|
+    @@additionnals_modules.delete('ngx_dev_kit')
+    @@additionnals_modules.push('ndk_http_module').map do |mod|
       File.write(lib("nginx/modules-available/#{mod}.conf"), "load_module modules/#{mod}.so;")
       File.write(etc("nginx/modules-available/#{mod}.conf"), "load_module modules/#{mod}.so;")
     end
