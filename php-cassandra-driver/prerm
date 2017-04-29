@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+[ "$1" = "remove" ] && phpdismod cassandra
+
+exit 0
