@@ -1,0 +1,20 @@
+[Unit]
+Description=Prometheus Server
+Documentation=https://prometheus.io/docs/alerting/alertmanager/
+After=local-fs.target network-online.target network.target
+Wants=local-fs.target network-online.target network.target
+
+[Service]
+Environment="User=alertmanager Group=alertmanager PROMETHEUS_CONFIG=/etc/alertmanager/alertmanager.yml"
+EnvironmentFile=/etc/default/alertmanager
+User=${ALERTMANAGER_USER}
+Group=${ALERTMANAGER_GROUP}
+Restart=on-failure
+ExecStart=/usr/bin/alertmanager \
+           -config.file=${ALERTMANAGER_CONFIG}
+           ${ALERTMANAGER_OPTS}
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

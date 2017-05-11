@@ -1,0 +1,5 @@
+ALERTMANAGER_PID='/var/run/alertmanager.pid'
+ALERTMANAGER_CONFIG='/etc/alertmanager/alertmanager.yml'
+
+ALERTMANAGER_OPTS="-storage.path=/var/lib/alertmanager/data"
+
