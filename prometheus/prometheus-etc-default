@@ -1,0 +1,7 @@
+PROMETHEUS_PID='/var/run/prometheus.pid'
+PROMETHEUS_USER='prometheus'
+PROMETHEUS_GROUP='prometheus'
+PROMETHEUS_CONFIG='/etc/prometheus/prometheus.yml'
+
+PROMETHEUS_OPTS="-storage.local.path=/var/lib/prometheus/data"
+

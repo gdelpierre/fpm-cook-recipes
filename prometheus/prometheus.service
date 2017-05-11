@@ -1,0 +1,20 @@
+[Unit]
+Description=Prometheus Server
+Documentation=https://prometheus.io/docs/introduction/overview/
+After=local-fs.target network-online.target network.target
+Wants=local-fs.target network-online.target network.target
+
+[Service]
+Environment="User=prometheus Group=prometheus PROMETHEUS_CONFIG=/etc/prometheus/prometheus.yml"
+EnvironmentFile=/etc/default/prometheus
+User=${PROMETHEUS_USER}
+Group=${PROMETHEUS_GROUP}
+Restart=on-failure
+ExecStart=/usr/bin/prometheus \
+           -config.file=${PROMETHEUS_CONFIG}
+           ${PROMETHEUS_OPTS}
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
