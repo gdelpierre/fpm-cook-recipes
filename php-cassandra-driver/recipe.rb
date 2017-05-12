@@ -9,7 +9,7 @@ class Php_cassandra < FPM::Cookery::Recipe
     :submodule => true
 
   revision      '1'
-  maintainer    'gde@llew.me'
+  maintainer    'Llew <gde@llew.me>'
   arch          'amd64'
   description   'DataStax PHP Driver for Apache Cassandra'
   section       'php'

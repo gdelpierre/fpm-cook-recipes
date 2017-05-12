@@ -8,8 +8,8 @@ class Alertmanager < FPM::Cookery::Recipe
   source        "https://github.com/prometheus/#{name}/releases/download/v#{version}/#{name}-#{version}.linux-amd64.tar.gz"
   homepage      'http://prometheus.io/docs/alerting/alertmanager/'
 
-  revision      'm6web1'
-  maintainer    'M6Web <sysadmin@m6web.fr>'
+  revision      '1'
+  maintainer    'Llew <gde@llew.me>'
   arch          'amd64'
   section       'net'
 

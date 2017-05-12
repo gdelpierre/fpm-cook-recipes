@@ -8,8 +8,8 @@ class Prometheus < FPM::Cookery::Recipe
   source        "https://github.com/#{name}/#{name}/releases/download/v#{version}/#{name}-#{version}.linux-amd64.tar.gz"
   homepage      'https://www.prometheus.io/'
 
-  revision      'm6web1'
-  maintainer    'M6Web <sysadmin@m6web.fr>'
+  revision      '1'
+  maintainer    'Llew <gde@llew.me>'
   arch          'amd64'
   section       'net'
 
